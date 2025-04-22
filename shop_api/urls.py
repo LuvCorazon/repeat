@@ -19,12 +19,21 @@ from django.urls import path
 from products import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/v1/products/', views.product_list_api_view),
-    path('api/v1/products/<int:id>/', views.product_detail_api_view),
-    path('api/v1/categories/', views.category_list_api_view),
-    path('api/v1/categories/<int:id>/', views.category_detail_api_view),
-    path('api/v1/reviews/', views.review_list_api_view),
-    path('api/v1/reviews/<int:id>/', views.review_detail_api_view),
-    path('api/v1/products/reviews/', views.product_reviews_with_rating),
+    # User Auth Endpoints
+    path('register/', views.RegisterUserView.as_view()),
+    path('confirm/', views.ConfirmUserView.as_view()),
+    path('login/', views.LoginUserView.as_view()),
+
+    # Product Endpoints
+    path('products/', views.ProductListView.as_view()),
+    path('products/<int:pk>/', views.ProductDetailView.as_view()),
+    path('products/reviews/', views.ProductReviewsWithRatingView.as_view()),
+
+    # Category Endpoints
+    path('categories/', views.CategoryListView.as_view()),
+    path('categories/<int:pk>/', views.CategoryDetailView.as_view()),
+
+    # Review Endpoints
+    path('reviews/', views.ReviewListView.as_view()),
+    path('reviews/<int:pk>/', views.ReviewDetailView.as_view()),
 ]
